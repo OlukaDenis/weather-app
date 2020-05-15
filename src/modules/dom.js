@@ -10,19 +10,36 @@ export const DomElements = (() => {
   const container = document.getElementById('content');
 
   const searchForm = document.createElement('form');
+  searchForm.setAttribute('class', 'form')
   const searchInput = document.createElement('input');
   const dataContainer = document.createElement('div');
+  dataContainer.classList.add('container');
+  const celFarBtn = document.createElement('button');
 
   searchInput.setAttribute('type', 'text');
-  const searchBtn = document.createElement('input');
-  searchBtn.setAttribute('type', 'submit');
+  const sbtn = document.createElement('button');
+  sbtn.setAttribute('type', 'submit');
+  const btnIc = document.createElement('span');
+  btnIc.classList.add('fas', 'fa-search', 'search-btn');
+  sbtn.appendChild(btnIc);
   searchForm.appendChild(searchInput);
-  searchForm.appendChild(searchBtn);
+  searchForm.appendChild(sbtn);
 
-  const updateData = (data) => {
+  const updateData  = (data, cel) => {
     dataContainer.innerHTML = '';
+
+    const toggleTemp = () => {
+      if (cel){
+        return  `${Math.round(data.temp)} °C`;
+      } else {
+        let faren = (data.temp * (9 / 5) + 32);
+        return `${Math.round(faren)} °F`;
+      }
+    }
+
     console.log(data);
     const topDiv = document.createElement('div');
+    topDiv.setAttribute('class', '__top-div');
     const cityInfo = document.createElement('div');
     const cityName = document.createElement('h1');
     cityName.innerHTML = data.name;
@@ -30,6 +47,19 @@ export const DomElements = (() => {
     countryName.innerHTML = data.country;
     cityInfo.appendChild(cityName);
     cityInfo.appendChild(countryName);
+    cityInfo.appendChild(celFarBtn);
+
+    celFarBtn.setAttribute('class', 'btn cel-far-btn');
+    celFarBtn.innerHTML = 'Change to °F';
+    celFarBtn.addEventListener('click', () => {
+      if (cel) {
+        updateData(data, false);
+        celFarBtn.innerHTML = 'Change to °C';
+      } else {
+        updateData(data, true);
+        celFarBtn.innerHTML = 'Change to °F';
+      }
+    });
 
     const cloudsInfo = document.createElement('div');
     const cloudImage = document.createElement('img');
@@ -43,12 +73,13 @@ export const DomElements = (() => {
     topDiv.appendChild(cloudsInfo);
 
     const bottomDiv = document.createElement('div');
+    bottomDiv.setAttribute('class', '__bottom-div');
     const temp = document.createElement('div');
     const tempDiv = document.createElement('h4');
     const tempIc = document.createElement('i');
     tempIc.classList.add('fas', 'fa-thermometer-half')
     const tempData = document.createElement('span');
-    tempData.innerHTML = data.temp;
+    tempData.innerHTML = toggleTemp();
     tempDiv.appendChild(tempIc);
     tempDiv.appendChild(tempData);
     temp.appendChild(tempDiv);
@@ -59,7 +90,7 @@ export const DomElements = (() => {
     const humidityIc = document.createElement('i');
     humidityIc.classList.add('fas', 'fa-tint')
     const humidityData = document.createElement('span');
-    humidityData.innerHTML = data.humidity;
+    humidityData.innerHTML = ` ${data.humidity} %`;
     humidityDiv.appendChild(humidityIc);
     humidityDiv.appendChild(humidityData);
     humidity.appendChild(humidityDiv);
@@ -68,9 +99,9 @@ export const DomElements = (() => {
     const pressure = document.createElement('div');
     const pressureDiv = document.createElement('h4');
     const pressureIc = document.createElement('i');
-    pressureIc.classList.add('fas', 'fa-tint')
+    pressureIc.classList.add('fas', 'fa-tachometer-alt')
     const pressureData = document.createElement('span');
-    pressureData.innerHTML = data.pressure;
+    pressureData.innerHTML = ` ${data.pressure} inHG`;
     pressureDiv.appendChild(pressureIc);
     pressureDiv.appendChild(pressureData);
     pressure.appendChild(pressureDiv);
