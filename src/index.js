@@ -1,5 +1,6 @@
 import { DomElements as Dom } from './modules/dom';
 import { JsonData } from './modules/data';
+import _ from 'lodash';
 import './index.css';
 
 const apiKey = '269c433647c44e7f08da7c96212b5f57';
