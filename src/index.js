@@ -12,7 +12,7 @@ Dom.searchForm.addEventListener('submit', (event) => {
 
 const getSearchResults = async (city) => {
   const weather = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`,
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`,
     { mode: 'cors' }
   );
   weather
