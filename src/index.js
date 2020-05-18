@@ -23,7 +23,7 @@ const getSearchResults = async (city) => {
     })
     .catch(() => {
       Dom.error.style.display = 'block';
-      Dom.error.innerHTML = ` Sorry, couldn't fetch weather for this city! 😩`;
+      Dom.error.innerHTML = ` Sorry, couldn't fetch weather for this city! 😕😒`;
     });
 };
 
