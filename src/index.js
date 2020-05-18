@@ -14,8 +14,14 @@ const getSearchResults = async (city) => {
       { mode: 'cors'}
     );
     weather.json()
-      .then(res => Dom.updateData(JsonData(res), true))
-      .catch(err => console.log(err));
+      .then(res => {
+        Dom.error.style.display = 'none';
+        Dom.updateData(JsonData(res), true)
+      })
+      .catch(() => {
+        Dom.error.style.display = 'block';
+        Dom.error.innerHTML = ` Sorry, couldn't fetch weather for this city! 😩`;
+      });
 };
 
 getSearchResults('kampala');

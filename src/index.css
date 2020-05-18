@@ -1,13 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+
 body {
   padding: 0;
   margin: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.overlay {
+  background-color: rgba(17, 17, 17, 0.521);
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: -10;
 }
 
 #content {
-  width: 900px;;
+  width: 900px;
   margin: 0 auto;
   padding: 50px;
+}
+
+hr {
+  border:  0.5px solid gray;
+  margin: 50px 20px 0;
 }
 
 form {
@@ -17,16 +35,81 @@ form {
   margin: 0 auto;
 }
 
+form > input {
+  padding: 8px 20px;
+  border-radius: 20px 0 0 20px;
+  border: none;
+}
+
+form button {
+  border-radius: 0 20px 20px 0;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
 .search-btn {
   padding: 8px 30px;
 }
 .container {
-  width: 80%;
-  margin: 0 auto;
+  margin: 50px 0 auto;
+  background-color: rgba(17, 17, 17, 0.37);
+  color: white;
+  height: 450px;
+  border-radius: 20px;
 }
 
 .__top-div, .__bottom-div {
   display: flex;
   justify-content: space-between;
+  padding: 0 50px;
 }
+
+.__bottom-div {
+  margin-top: 100px;
+}
+
+.cel-far-btn {
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.cel-far-btn:hover, 
+form button:hover {
+  background-color: black ;
+  color: white;
+}
+
+.clouds-info p {
+  text-transform: capitalize;
+}
+
+.temperature h4 svg,
+.humidity h4 svg,
+.pressure h4 svg {
+  font-size: 70px;
+  color:#ff8533;
+}
+
+
+.p-heading span {
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+.error {
+  background-color: rgb(202, 67, 67);
+  border-radius: 20px;
+  padding: 8px 20px;
+  margin: 0 auto;
+  width: 70%;
+  margin-top: 30px;
+  margin-bottom: -30px;
+  text-align: center;
+  color: white;
+  display: none;
+}
+
 
