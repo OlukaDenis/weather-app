@@ -3,8 +3,8 @@ export const JsonData = (json) => {
   const { main, description, icon } = json.weather[0];
   const { temp, temp_min, temp_max, pressure, humidity } = json.main;
   const { country } = json.sys;
-  const [ sunrise, sunset ] = [Date(json.sys.sunrise), Date(json.sys.sunset)]
-  const [ name, timezone, dateTime] = [json.name, json.timezone, Date(json.dt)];
+  const [sunrise, sunset] = [Date(json.sys.sunrise), Date(json.sys.sunset)];
+  const [name, timezone, dateTime] = [json.name, json.timezone, Date(json.dt)];
 
   return {
     lon,
@@ -22,6 +22,6 @@ export const JsonData = (json) => {
     sunrise,
     sunset,
     name,
-    timezone
-  }
+    timezone,
+  };
 };
