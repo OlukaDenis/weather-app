@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 /* eslint-enable */
 
+/* eslint-disable import/prefer-default-export */
 export const DomElements = (() => {
   const body = document.getElementById('body');
   const container = document.getElementById('content');
