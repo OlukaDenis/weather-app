@@ -1,14 +1,6 @@
-import { DomElements as Dom } from './modules/dom';
-import { JsonData } from './modules/data';
-import _ from 'lodash';
+import { DomElements } from './modules/dom';
+import JsonData  from './modules/data';
 import './index.css';
-
-const apiKey = '269c433647c44e7f08da7c96212b5f57';
-Dom.searchForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const selectedCity = Dom.searchInput.value;
-  getSearchResults(selectedCity);
-});
 
 const getSearchResults = async (city) => {
   const weather = await fetch(
@@ -18,13 +10,20 @@ const getSearchResults = async (city) => {
   weather
     .json()
     .then((res) => {
-      Dom.error.style.display = 'none';
-      Dom.updateData(JsonData(res), true);
+      DomElements.error.style.display = 'none';
+      DomElements.updateData(JsonData(res), true);
     })
     .catch(() => {
-      Dom.error.style.display = 'block';
-      Dom.error.innerHTML = ` Sorry, couldn't fetch weather for this city! 😕😒`;
+      DomElements.error.style.display = 'block';
+      DomElements.error.innerHTML = ` Sorry, couldn't fetch weather for this city! 😕😒`;
     });
 };
+
+const apiKey = '269c433647c44e7f08da7c96212b5f57';
+DomElements.searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const selectedCity = DomElements.searchInput.value;
+  getSearchResults(selectedCity);
+});
 
 getSearchResults('kampala');

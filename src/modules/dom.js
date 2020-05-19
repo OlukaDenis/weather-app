@@ -1,4 +1,3 @@
-import { CustomDate } from './customDateFormat';
 /* eslint-disable */
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
@@ -36,7 +35,7 @@ export const DomElements = (() => {
       if (cel) {
         return `${Math.round(data.temp)} °C`;
       } else {
-        let faren = data.temp * (9 / 5) + 32;
+        const faren = data.temp * (9 / 5) + 32;
         return `${Math.round(faren)} °F`;
       }
     };
